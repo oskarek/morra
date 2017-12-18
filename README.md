@@ -1,6 +1,6 @@
 # Morra
 
-The odds and evens variant of the [Morra game](https://en.wikipedia.org/wiki/Morra_(game), written in Haskell. The purpose of this project is to learn how to use monad transformers, in this case the StateT monad transformer is used.
+The odds and evens variant of the [Morra game](https://en.wikipedia.org/wiki/Morra_(game)), written in Haskell. The purpose of this project is to learn how to use monad transformers, in this case the StateT monad transformer is used.
 
 ## Getting Started
 
