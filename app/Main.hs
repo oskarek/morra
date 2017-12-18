@@ -23,11 +23,11 @@ printWelcomeMsg =
 
 printWinMsg :: GameState -> IO ()
 printWinMsg (GameState p c r) = do
-  putStrLn "\n ---------------------------"
+  putStrLn "\n+---------------------------+"
   case compare p c of
     GT -> putStrLn "|    YOU WON! WOHOO!! 😃    |"
     LT -> putStrLn "|  YOU LOST. YOU SUCK!! 😂  |"
     EQ -> putStrLn "| It was a tie! Boring.. 😒 |"
-  putStrLn " ---------------------------"
+  putStrLn "+---------------------------+"
   putStrLn $ "Player total points: " ++ show p
   putStrLn $ "Computer total points: " ++ show c

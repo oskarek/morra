@@ -1,6 +1,6 @@
 module Morra where
 import           Control.Applicative       (empty, liftA2, (<|>))
-import           Control.Monad             (unless)
+import           Control.Monad             (mfilter, unless)
 import           Control.Monad.IO.Class    (liftIO)
 import           Control.Monad.Trans.State
 import           System.Random             (randomRIO)
@@ -16,11 +16,7 @@ gameOver (GameState p c r) =
   r > 5 || max p c > 5`div`2
 
 readPlayerInput :: IO Int
-readPlayerInput = do
-  n <- readLn
-  if n `elem` [1,2]
-    then return n
-    else empty
+readPlayerInput = mfilter (`elem` [1,2]) readLn
 
 getPlayerNum :: IO Int
 getPlayerNum = putStr "P: " >> readPlayerInput
@@ -43,11 +39,10 @@ finishRound sum' = do
 
 round' :: StateT GameState IO ()
 round' = do
-  gameState <- get
-  liftIO $ putStrLn ("\n----ROUND " ++ show (roundNum gameState) ++ "----")
-  (pNum, cNum) <- liftIO $
-    liftA2 (,) getPlayerNum getComputerNum
-  finishRound (pNum+cNum)
+  GameState _ _ r <- get
+  liftIO $ putStrLn ("\n----ROUND " ++ show r ++ "----")
+  sum' <- liftIO $ liftA2 (+) getPlayerNum getComputerNum
+  finishRound sum'
 
 game :: StateT GameState IO ()
 game = do round'
