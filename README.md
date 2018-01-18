@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oskarek/morra.svg?branch=master)](https://travis-ci.org/oskarek/morra)
+
 # Morra
 
 The odds and evens variant of the [Morra game](https://en.wikipedia.org/wiki/Morra_(game)), written in Haskell. The purpose of this project is to learn how to use monad transformers, in this case the StateT monad transformer is used.
